@@ -15,9 +15,10 @@ class App extends Component {
   handleClick = () => {
     const { register } = this.state
     if(register){
-      this.setState({register: false })
+      this.setState({register: false, title: 'Sign UP First!' })
     }else{
-      this.setState({register: true })
+      this.setState({register: true, title: 'Log in and enjoy the App',
+    })
       }
   }
 
@@ -26,7 +27,7 @@ class App extends Component {
   }
 
   register = () => {
-    
+
   }
 
   render() {
@@ -35,35 +36,40 @@ class App extends Component {
     return (
       <div >
         <Container title={title}>
+          
+          {register && 
           <Form>
 
             <Input label="Username" type="text" placeholder="Ex: jjla" name="name"/>
             <Input label="Password" type="password" placeholder="" name="password"/>
-            {register &&
-              <Input label="Confirm Password" type="password" placeholder="" name="confirmPassword"/>}
-            {!register && 
             
-              <Button color='primary'>
-                Sign In
-              </Button>}
+            <Button color='primary'>
+              Sign In
+            </Button>
             
-            {register && 
-              <Button color='primary'>
+            <p>
+              <a onClick={this.handleClick}>
                 Sign UP
-              </Button>}
-            {register &&
-              <p>
-                <a onClick={this.handleClick}>
-                  Sign UP
-                </a>
-              </p>}
-            {!register &&
-              <p>
-                <a onClick={this.handleClick}>
-                  Sign In
-                </a>
-              </p>}
-          </Form>
+              </a>
+            </p>
+          </Form>}
+
+          {!register && 
+          <Form>
+
+            <Input label="Username" type="text" placeholder="Ex: jjla" name="name"/>
+            <Input label="Password" type="password" placeholder="" name="password"/>
+            <Input label="Confirm Password" type="password" placeholder="" name="confirmPassword"/>
+     
+            <Button color='primary'>
+              Sign UP
+            </Button>
+            <p>
+              <a onClick={this.handleClick}>
+                Sign In
+              </a>
+            </p>
+          </Form>}
         </Container>
       </div>
     );
